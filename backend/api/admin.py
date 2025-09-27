@@ -1,9 +1,14 @@
 # backend/api/admin.py
 
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser, Product, Customer, Order, OrderItem
 
-# We will create custom admin views to make the interface more useful
+# This custom admin configuration is necessary for a custom user model
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    # You can customize the admin display here if needed
+    list_display = ['username', 'email', 'first_name', 'last_name', 'is_staff']
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'stock', 'created_at')
@@ -15,7 +20,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
-    extra = 0 # Don't show extra empty forms
+    extra = 0
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'status', 'created_at')
@@ -23,7 +28,7 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
 
 # Register your models here.
-admin.site.register(CustomUser)
+admin.site.register(CustomUser, CustomUserAdmin) # Use the new custom admin
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Order, OrderAdmin)

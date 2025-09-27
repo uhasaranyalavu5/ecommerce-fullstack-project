@@ -1,6 +1,13 @@
 # backend/api/models.py
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+# backend/api/models.py
+from cloudinary.models import CloudinaryField # ADD THIS IMPORT
+
+class Product(models.Model):
+    # ... (other fields) ...
+    image = CloudinaryField('image', null=True, blank=True) # UPDATE THIS LINE
+    # ... (other fields) ...
 
 # ADD THIS NEW MODEL AT THE TOP
 class CustomUser(AbstractUser):

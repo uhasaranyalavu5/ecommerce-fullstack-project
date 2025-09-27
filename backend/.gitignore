@@ -1,0 +1,16 @@
+# backend/.gitignore
+
+# Python virtual environment
+venv/
+
+# Django media files (user-uploaded images)
+media/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE and OS files
+.idea/
+.vscode/
+*.DS_Store

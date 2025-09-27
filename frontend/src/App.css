@@ -1,0 +1,225 @@
+/* src/App.css */
+
+/* --- 1. Global Styles & Pastel Color Palette --- */
+:root {
+  --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --sidebar-bg: #ffffff;
+  --navbar-bg: rgba(255, 255, 255, 0.8);
+  --content-bg: #ffffff;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+  
+  --accent-primary: #667eea; /* Pastel Indigo */
+  --accent-primary-hover: #5a67d8;
+  --accent-red: #f56565; /* Pastel Red */
+  --accent-red-hover: #e53e3e;
+
+  /* Stat Card Gradients */
+  --grad-1: linear-gradient(to right, #89f7fe 0%, #66a6ff 100%);
+  --grad-2: linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%);
+  --grad-3: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--background-gradient);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- 2. Main App Layout --- */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.layout-body {
+  display: flex;
+  flex-grow: 1;
+}
+.main-content {
+  flex-grow: 1;
+  padding: 32px;
+  width: calc(100% - var(--sidebar-width));
+}
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.page-header h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* --- 3. Navbar, Sidebar, Footer --- */
+.navbar {
+  height: var(--navbar-height);
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .brand {
+  font-size: 1.5em;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 24px 16px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.sidebar-nav li a:hover { background-color: #f3f4f6; color: var(--text-primary); }
+.sidebar-nav li a.active { background: var(--accent-primary); color: white; font-weight: 600; box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3); }
+.footer {
+  padding: 24px;
+  text-align: center;
+  background-color: transparent;
+  color: var(--text-secondary);
+}
+
+/* --- 4. Forms & Inputs --- */
+.form-container, .auth-container {
+  background-color: var(--background-content);
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+label { font-weight: 500; margin-bottom: 8px; display: block; }
+input, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* --- 5. Buttons --- */
+button, .button-link {
+  background-color: var(--accent-primary);
+  color: white !important;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
+}
+button:hover, .button-link:hover {
+  background-color: var(--accent-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(102, 126, 234, 0.3);
+}
+button.delete-btn { background-color: var(--accent-red); box-shadow: 0 4px 6px rgba(245, 101, 101, 0.2); }
+button.delete-btn:hover { background-color: var(--accent-red-hover); box-shadow: 0 7px 14px rgba(245, 101, 101, 0.3); }
+button.logout-btn { background-color: var(--accent-red); box-shadow: 0 4px 6px rgba(245, 101, 101, 0.2); }
+button.logout-btn:hover { background-color: var(--accent-red-hover); box-shadow: 0 7px 14px rgba(245, 101, 101, 0.3); }
+
+/* --- 6. Table Styles --- */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--background-content);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.product-table th, .product-table td { padding: 16px; text-align: left; }
+.product-table th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid var(--border-color);
+}
+.product-table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border-color);
+}
+.product-table tr:hover {
+    background-color: #fafcff;
+}
+.product-table td.actions { text-align: right; white-space: nowrap; }
+.product-table td.actions a, .product-table td.actions button { margin-left: 10px; }
+
+/* --- 7. Dashboard & Login Specific --- */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+.stat-card {
+  color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+.stat-card:nth-child(1) { background-image: var(--grad-1); }
+.stat-card:nth-child(2) { background-image: var(--grad-2); }
+.stat-card:nth-child(3) { background-image: var(--grad-3); }
+
+.stat-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1em;
+  font-weight: 500;
+}
+.stat-card p { font-size: 2.5em; font-weight: 700; margin: 0; }
+.login-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.auth-container { max-width: 420px; width: 100%; }

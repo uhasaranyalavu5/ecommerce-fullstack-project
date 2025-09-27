@@ -3,10 +3,10 @@
 import axios from 'axios';
 
 // Create an instance of axios
+// frontend/src/api/api.js
 const api = axios.create({
-  baseURL: 'http://localhost:8000', // Your Django server's address
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
 });
-
 // Use an interceptor to add the token to every request
 api.interceptors.request.use(
   config => {

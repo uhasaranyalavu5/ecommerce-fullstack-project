@@ -68,7 +68,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ecommerce_db', 'USER': 'root',
-            'PASSWORD': 'YOUR_MYSQL_PASSWORD', # <-- IMPORTANT: Use your local MySQL password
+            'PASSWORD': 'Uhasaranya@2004', # <-- IMPORTANT: Use your local MySQL password
             'HOST': '127.0.0.1', 'PORT': '3306',
         }
     }
@@ -107,3 +107,4 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
     'CSRF_HEADER_NAME': 'HTTP_X_CSRFTOKEN',
 }
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')

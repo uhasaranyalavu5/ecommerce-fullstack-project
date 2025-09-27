@@ -3,7 +3,26 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-
+if 'DATABASE_URL' in os.environ:
+    # This block will be used on Render
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # This block will be used on your local machine
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ecommerce_db',
+            'USER': 'root',
+            'PASSWORD': 'Uhasaranya@2004', # <-- IMPORTANT: Put your local MySQL password here
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+        }
+    }
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
